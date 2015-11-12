@@ -1,0 +1,26 @@
+{
+  "name": "extract-iptc",
+  "version": "0.1",
+  "description": "Extracts IPTC/XMP metadata from images",
+  "author": "Anton Lysenko <achesco@gmail.com>",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/achesco/extract-iptc"
+  },
+  "bugs": {
+    "url": "https://github.com/achesco/extract-iptc/issues"
+  },
+  "keywords": [
+    "iptc",
+    "xmp",
+    "metadata",
+    "image",
+    "imagemagick",
+    "extract",
+    "parse"
+  ],
+  "dependencies": {
+    "imagemagick": "0.1.3"
+  }
+}
