@@ -59,12 +59,12 @@ module.exports = {
         try {
             im.convert([filePath, 'IPTCTEXT:-'], function (err, data) {
                 if (err) {
-                    callback({});
+                    callback(null, {});
                 }
-                callback(process(data));
+                callback(null, process(data));
             });
         } catch (err) {
-            callback({});
+            callback(err);
         }
     }
 
