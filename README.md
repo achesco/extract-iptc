@@ -9,7 +9,7 @@ Simple wrapper and parser around imagemagick's convert CLI utility call to extra
 ## Usage
 
 ```
-vat ExtractIptc = require('extract-iptc');
+var ExtractIptc = require('extract-iptc');
 
 // if convert utility isn'n in PATH variable
 ExtractIptc.setImageMagickConvertPath('/path/to/bin/convert');
