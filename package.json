@@ -1,6 +1,6 @@
 {
   "name": "extract-iptc",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Extracts IPTC/XMP metadata from images",
   "main": "index.js",
   "dependencies": {
