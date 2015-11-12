@@ -60,8 +60,9 @@ module.exports = {
             im.convert([filePath, 'IPTCTEXT:-'], function (err, data) {
                 if (err) {
                     callback(null, {});
+                } else {
+                    callback(null, process(data));
                 }
-                callback(null, process(data));
             });
         } catch (err) {
             callback(err);
