@@ -21,6 +21,13 @@ var im = require('imagemagick'),
         '2#122': 'writer'
     };
 
+function onvalue(value, key, info){
+    return key == 'keywords' ? 
+            (info[key] || []).concat(value)
+        : 
+            value
+}
+
 function process(dataStr) {
     var metaKeys = Object.keys(meta);
 
@@ -30,8 +37,12 @@ function process(dataStr) {
             metaKeys.some(function (key) {
                 var idx = line.indexOf('=');
                 if (line.indexOf(key + '#') === 0) {
-                    info[meta[key]] = line.substr(idx + 1)
-                        .replace(new RegExp('^"|"$', 'g'), '');
+                    var value = line
+                        .slice(idx+2, line.lastIndexOf('"'))
+                    
+                    info[meta[key]] = onvalue(value, meta[key], info)
+                        
+
                     return true;
                 }
                 return false;
