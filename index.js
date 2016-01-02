@@ -28,10 +28,18 @@ function process(dataStr) {
         .split('\n')
         .reduce(function (info, line) {
             metaKeys.some(function (key) {
-                var idx = line.indexOf('=');
+                var idx = line.indexOf('='),
+                    value, values;
+
                 if (line.indexOf(key + '#') === 0) {
-                    info[meta[key]] = line.substr(idx + 1)
-                        .replace(new RegExp('^"|"$', 'g'), '');
+                    values = info[meta[key]];
+                    value = line.slice(idx + 2, line.lastIndexOf('"'));
+
+                    if (!values) {
+                        info[meta[key]] = value;
+                    } else {
+                        info[meta[key]] = (typeof values === 'string' ? [values] : values).concat(value);
+                    }
                     return true;
                 }
                 return false;

@@ -8,23 +8,31 @@ Simple wrapper and parser around imagemagick's convert CLI utility call to extra
 
 ## Usage
 
-```
+``` js
 var ExtractIptc = require('extract-iptc');
 
 // if convert utility isn'n in PATH variable
 ExtractIptc.setImageMagickConvertPath('/path/to/bin/convert');
 
-ExtractIptc.extract('/path/to/image.jpg', function (error, meta) {
+ExtractIptc.extract('/path/to/image.jpg', function (error, meta) { 
     if (error) {
         console.error(error);
     }
     console.log('Title is: ' + meta.title);
-    console.log('Keywords are: ' + meta.keywords);
+    if (meta.keywords) {
+        if (typeof meta.keywords === 'string') {
+            console.log('Single keyword is: ' + meta.keywords);
+        } else {
+            console.log('Keywords are: ' + meta.keywords.join(', '));
+        }
+    }
     console.log('Copyrighted by: ' + meta.copyright);
 });
 ```
 
 ## Resulting meta object fields reference
+
+NB. Returns array for any tag values with multiple occurrences.
 
 | extract-iptc | IPTC | XMP |
 |--------------|------|-----|
